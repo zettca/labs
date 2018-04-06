@@ -1,0 +1,43 @@
+main {
+  font-size: 1.2rem;
+  width: 90%;
+  margin: 1rem auto;
+}
+
+h3 {
+  margin: 0;
+  user-select: none;
+}
+
+#infos {
+  display: table;
+}
+
+#infos span {
+  display: block;
+  font-family: monospace;
+}
+
+#infos div {
+  padding: 0.6em 0.8em;
+  margin: 0.8em auto;
+  background: #FAFAFA;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px #BBB;
+}
+
+.right {
+  float: right;
+}
+
+.green {
+  color: #060;
+}
+
+.blue {
+  color: #00A;
+}
+
+.red {
+  color: #A00;
+}
