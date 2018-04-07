@@ -12,12 +12,12 @@ export function pad0(n) {  // padding with 0
   return n > 9 ? n : '0' + n;
 }
 
-export function getTime() {
-  const d = new Date();
+export function getTime(date) {
+  const d = date || new Date();
   return [d.getHours(), d.getMinutes()].map(pad0).join(':');
 }
 
-export function getDate() {
-  const d = new Date();
+export function getDate(date) {
+  const d = date || new Date();
   return `${d.getDate()} ${monthNames[d.getMonth()].slice(0, 3)}`;
 }

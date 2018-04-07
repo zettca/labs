@@ -38,10 +38,14 @@ class App extends React.Component {
 
   nextDay() {
     const { dow } = this.state;
+    const d = new Date();
+    const newDow = ((dow >= 5) ? 0 : dow) + 1;
+    d.setDate(d.getDate() + (newDow - d.getDay()));
+
     this.setState({
-      date: getDate(),
+      date: getDate(d),
       time: getTime(),
-      dow: (dow % 5) + 1,
+      dow: newDow,
     });
   }
 
@@ -52,8 +56,8 @@ class App extends React.Component {
       <main>
         <header onClick={this.nextDay}>
           <h3>
-            <span>{[time, weekDays[dow]].join(' • ')}</span>
-            <span className={'right'}>{date}</span>
+            <span>{`${weekDays[dow].slice(0, 3)}, ${date}`}</span>
+            <span className={'right'}>{time}</span>
           </h3>
         </header>
         <section id="infos">
