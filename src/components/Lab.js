@@ -1,5 +1,5 @@
 import React from 'react';
-import { weekDays, removeNums, getTime } from '../helpers';
+import { weekDays, getTime } from '../helpers';
 
 class Lab extends React.PureComponent {
   render() {
@@ -12,8 +12,6 @@ class Lab extends React.PureComponent {
     let currentClass = null;
 
     events.forEach(ev => {
-      ev.course.acronym = removeNums(ev.course.acronym);
-
       if (ev.weekday === weekDays[day].slice(0, 3)) {
         if (curTime < ev.start || weekDays[day] !== weekDays[new Date().getDay()]) {
           nextClasses.push(ev);
@@ -33,7 +31,7 @@ class Lab extends React.PureComponent {
         </h3>
         {nextClasses.map((cl, i) => (
           <span key={i}>
-            <strong>{cl.start} – {cl.end}</strong> {cl.course.acronym}
+            <strong>{cl.start} – {cl.end}</strong> {cl.course.acronym.replace(/[^A-Za-z]/g, '')}
           </span>
         ))}
       </div>

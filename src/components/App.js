@@ -1,7 +1,7 @@
 import React from 'react';
 import Lab from './Lab';
 import './App.css';
-import { weekDays, getTime, getDate } from '../helpers';
+import { weekDays, getTime, getDate, getISODate, getLastMonday } from '../helpers';
 
 const URL = 'https://web.tecnico.ulisboa.pt/~ist178013/labevents/?lab=';
 
@@ -14,25 +14,36 @@ class App extends React.Component {
       time: getTime(),
       dow: new Date().getDay(), // day of week
       labs: [
-        { id: 2448131365220, data: null }, // 1 - 15
-        { id: 2448131365221, data: null }, // 1 - 17
-        { id: 2448131365222, data: null }, // 1 - 19
-        { id: 2448131365227, data: null }, // 1 - 27
-        { id: 2448131365229, data: null }, // 1 - 29
-        { id: 2448131365166, data: null }, // 0 - 14
+        { id: 2448131365220, name: '1 - 15', data: null },
+        { id: 2448131365221, name: '1 - 17', data: null },
+        { id: 2448131365222, name: '1 - 19', data: null },
+        { id: 2448131365227, name: '1 - 27', data: null },
+        { id: 2448131365229, name: '1 - 29', data: null },
+        { id: 2448131365166, name: '0 - 14', data: null },
       ],
     };
   }
 
   componentWillMount() {
     const { labs } = this.state;
+    const dayEntry = getISODate(getLastMonday());
+
     labs.forEach(lab => {
-      fetch(URL + lab.id)
-        .then((res) => res.json())
-        .then((data) => {
-          lab.data = data;
-          this.setState({ labs });
-        });
+      const labEntry = `${dayEntry}_${lab.id}`;
+      const labData = JSON.parse(localStorage.getItem(labEntry));
+      if (labData !== null) {
+        console.log('Hit localStorage for ' + lab.name);
+        lab.data = labData;
+        this.setState({ labs });
+      } else {
+        fetch(URL + lab.id)
+          .then((res) => res.json())
+          .then((data) => {
+            lab.data = data;
+            localStorage.setItem(labEntry, JSON.stringify(data));
+            this.setState({ labs });
+          });
+      }
     });
   }
 

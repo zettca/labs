@@ -19,8 +19,8 @@ h3 {
 }
 
 #infos div {
-  padding: 0.6em 0.8em;
-  margin: 0.8em auto;
+  padding: 0.6rem 1rem;
+  margin: 1rem auto;
   background: #FAFAFA;
   border-radius: 2px;
   box-shadow: 1px 1px 4px #BBB;
