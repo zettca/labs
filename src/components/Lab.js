@@ -27,7 +27,7 @@ class Lab extends React.PureComponent {
     return (
       <div>
         <h3 className={currentClass ? 'red' : ((nextClasses.length) ? 'blue' : 'green')}>
-          Lab {data.name}
+          {data.name}
         </h3>
         {nextClasses.map((cl, i) => (
           <span key={i}>
