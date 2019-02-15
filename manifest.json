@@ -1,6 +1,6 @@
 {
-  "short_name": "Labs Schedule",
-  "name": "Daily Labs Schedule",
+  "short_name": "Labs",
+  "name": "IST Labs Schedule",
   "icons": [
     {
       "src": "favicon.ico",
