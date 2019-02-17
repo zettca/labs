@@ -4,9 +4,8 @@ import Lab from './Lab';
 import './App.css';
 import { weekDays, getTime, getDate, getISODate, getLastMonday } from '../helpers';
 
-const URL = 'https://web.tecnico.ulisboa.pt/~ist178013/labevents/?lab=';
-
-const DEFAULT_LABS = [220, 221, 222, 227, 229, 166,].map(l => '2448131365' + l);
+const URL = 'https://web.tecnico.ulisboa.pt/~ist178013/api/labevents/?lab=';
+const DEFAULT_LABS = [220, 221, 222, 227, 229, 166].map(l => '2448131365' + l);
 
 class App extends React.Component {
   constructor(props) {
